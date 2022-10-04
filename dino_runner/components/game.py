@@ -38,11 +38,12 @@ class Game:
         pygame.display.flip()
 
     def draw_background(self):
-        image_with = BG.get_width()
+        image_width = BG.get_width() - 1100
+        print(image_width)
         self.screen.blit(BG, (self.x_pos_bg,self.y_pos_bg))
         #self.screen.blit(BG, (self.x_pos_bg,self.y_pos_bg))
-        if self.x_pos_bg <=-image_with:
-            self.screen.blit(BG,(image_with+self.x_pos_bg,self.y_pos_bg)) 
+        if self.x_pos_bg <=-image_width:
+            self.screen.blit(BG,(image_width+self.x_pos_bg, self.y_pos_bg)) 
             self.x_pos_bg = 0
-        self.x_pos_bg -= self.game_speed  
-       
+        self.x_pos_bg -= self.game_speed
+        
