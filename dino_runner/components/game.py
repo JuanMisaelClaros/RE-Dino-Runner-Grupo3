@@ -1,3 +1,4 @@
+import math
 import pygame
 from dino_runner.utils.constants import BG,ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 from dino_runner.components.dinosaur.dinosur import Dinosaur
@@ -48,12 +49,17 @@ class Game:
         pygame.display.flip()
 
     def draw_background(self):
-        image_width = BG.get_width() - 1100
+        image_width = BG.get_width() 
+        total_screen = math.ceil  ((image_width / SCREEN_WIDTH)+ 1)
         self.screen.blit(BG, (self.x_pos_bg,self.y_pos_bg))
-        #self.screen.blit(BG, (self.x_pos_bg,self.y_pos_bg))
-        if self.x_pos_bg <=-image_width:
-            self.screen.blit(BG,(image_width+self.x_pos_bg, self.y_pos_bg)) 
-            self.x_pos_bg = 0
+
+        for i in range(0,total_screen):
+             self.screen.blit(BG, (1* image_width + self.x_pos_bg,self.y_pos_bg))
+
         self.x_pos_bg -= self.game_speed
+
+        if abs(self.x_pos_bg) > image_width:
+            self.x_pos_bg = 0
+        
         
         
